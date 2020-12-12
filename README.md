@@ -1,28 +1,22 @@
-# voiture-autonome
+### **[FR]** 
+# PIE Voiture Autonome
 
-# PIE Voiture autonome
+Projet de PIE qui vise à concevoir et construire une voiture autonome en modèle réduit pour participer à une course.
 
-Projet de PIE qui vise à concevoir et construire une voiture autonome pour participer à une course.
+## Documentation 2019
+Toute la documentation de l'année dernière est dans les dossiers `lidar2019`, `trajectoire2019` et `wiki2019`.
 
-## Programmes
+### 1. LIDAR
 
-## Wiki
 
--- Tous les documents de l'année dernière se trouvent dans le Wiki.
 
-### Compte-rendus
+### 2. Trajectoire
 
--- Dossier qui contient tout les compte-rendus des réunions/séances par ordre chronologique. Chacun est nommé avec la date de la réunion à l'envers.
-(contacter severine.bournaud@cea.fr et envoyer slides de compte-rendu)
+### 3. Wiki
 
-### Documentation
+------------
 
--- Dossier qui contient la documentation des différents composants (capteurs, moteurs, châssis...)
+### **[EN]** 
+# Autonomous Vehicle PIE project
 
-### FAST
-
--- Diagramme de décomposition des relations logiques entre les différentes fonctions et comment les réaliser.
-
-### WBS
-
--- Organigramme des taches du projet : décomposition du travail
+Project with the aim of conceiving and building a small autonomous vehicle to take part in a copmetition.
