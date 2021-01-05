@@ -1,6 +1,8 @@
 
+from rectangle import *
 
-def environment():
+
+def environment2(position,orientation):
     #circuitext=[[2,0],[9,0],[11,-2],[16,-2],[16,-10],[7,-10],[7,-6],[6,-5],[0,-5],[0,-2],[2,0]]
     #circuitint=[[3,-2],[8,-2],[10,-4],[14,-4],[14,-7],[10,-7],[8,-5],[7,-4],[3,-4],[3,-2]]
     #obst1=[[1.5,-2],[1.8,-2],[1.8,-2.3],[1.5,-2.3],[1.5,-2]]
@@ -11,6 +13,8 @@ def environment():
     obst1=[[3.5,-8.5],[4,-8.5],[4,-9],[3.5,-9],[3.5,-8.5]]
     obst2=[[11,-8.5],[11.5,-8.5],[11.5,-9],[11,-9],[11,-8.5]]
     obst3=[[7.5,-4],[8,-4],[8,-4.5],[7.5,-4.5],[7.5,-4]]
+    adversaire=rectangle(position,orientation)
     
-    envir=[circuitext,circuitint,obst1]#,obst2]#,obst3]
+
+    envir=[circuitext,circuitint,obst1,obst2,adversaire]#,obst3]
     return(envir)

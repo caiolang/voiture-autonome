@@ -1,24 +1,26 @@
 from math import *
+from params import *
 
-
-def actualise2(R,v,position,obj,cible,orientation,deltat,amaxlat,epsilonmax,amax,amin,tsb,l,vmax,N):
+def actualise2arc(R,v,position,cible,orientation,sgyp,Rimpact,evitement):
     
-    p=(tsb*vmax+l)/deltat*0.09 
-    d=p*1.8
-    
-    theta0=atan(cible[1]/cible[0])
-    theta1=atan(cible[1]/(cible[0]-v*deltat))
-    thetapoint=(theta1-theta0)/deltat
-    epsilon=(p*theta0+d*thetapoint)
-    #print(epsilon*180/pi)
-    epsilon=min(epsilonmax*2*pi/360,epsilon)
-    if epsilon<0:
-        epsilon=max(-epsilonmax*2*pi/360,epsilon)
-        
-    Rprim=abs(tsb*v**2/(epsilon)+l/(epsilon))
-    
+    [positioninit1,positioninit2,orientationinit1,orientationinit2,vinit1,vinit2,deltat,amaxlat,epsilonmax,amax,amin,tsb,l,larg,vmax,N,rv,m,alpha,lanti]=params()
    
-    #calcul vrai rayon courbure
+    epsilon=(tsb*v**2/R+l/R)
+    
+    if evitement:
+        epsilon=epsilonmax*pi/180
+        
+    #if evitement:
+        #epsilon=epsilonmax*pi/180
+        #print('evitement')
+        
+    #print('epsilon',epsilon*180/pi)
+    
+    
+    if sgyp<0:
+        epsilon=-epsilon
+    
+    Rprim=abs(tsb*v**2/(epsilon)+l/(epsilon)) #calcul vrai rayon courbure
     
    
     #calcul coordonnées du pt atteint apres deltat dans ref lidar
@@ -31,8 +33,11 @@ def actualise2(R,v,position,obj,cible,orientation,deltat,amaxlat,epsilonmax,amax
         thetaparc=v*deltat/Rprim
         yprim=Rprim*(1-cos(thetaparc))
         xprim=(Rprim-yprim)*sin(thetaparc)
+        if v<0:
+            xprim=-(Rprim-yprim)*sin(thetaparc)
+            
        
-        if cible[1]<0:
+        if sgyp<0:
             yprim=-yprim            
             thetaparc=-thetaparc
             
@@ -54,14 +59,19 @@ def actualise2(R,v,position,obj,cible,orientation,deltat,amaxlat,epsilonmax,amax
         rprim=sqrt(xprim**2+yprim**2)
         
         alphainc=360/N
-        xprim1=rprim*cos(thetaparc+orientation*2*pi/360) #correction en angle? 
+        xprim1=rprim*cos(thetaparc+orientation*2*pi/360) #correction en angle
         yprim1=rprim*sin(thetaparc+orientation*2*pi/360)
+        if v<0:
+            xprim1=rprim*cos(pi-thetaparc+orientation*2*pi/360)
+            yprim1=rprim*sin(pi-thetaparc+orientation*2*pi/360)
+
         
     
     #calcul coordonnées du pt atteint apres deltat dans ref abs
     xabs=xprim1+position[0]
     yabs=yprim1+position[1]
     
+    #calc nouvelle
     positionprim=[xabs,yabs]
     
     #calc nouvelle orientation
@@ -70,16 +80,23 @@ def actualise2(R,v,position,obj,cible,orientation,deltat,amaxlat,epsilonmax,amax
     #if obj[1]<position[1]:
     #    orientationprim=orientation-thetaparc
     
-    #calc nouvelle vitesse
+    #vitesse
     
-    vmaxr=sqrt(amaxlat*abs(R))
-    vmaxant=sqrt(-2/3*amin*(sqrt(cible[0]**2+cible[1]**2)))
-
-    vmaxx=min(vmaxr,vmaxant)
+    vmaxr=sqrt(amaxlat*R) #vitesse maxi à laquelle on peut rester sur un cercle de rayon R
+    vmaxant=1.1*sqrt(-2/3*amin*Rimpact) #vitesse maxi pour pouvoir s'arêter avant le mur qui se trouve droit devant la voiture, c'est par principe de prudence
+    #print('vmaxant',vmaxant)
+        
+    vmaxx=min(vmaxr,vmax,vmaxant)
+    
     a=min(1,(vmaxx-v)/(deltat*amax))*amax
-    if v>vmaxr:
+    
+    if v>vmaxx:
         a=min(1,(vmaxx-v)/(deltat*amin))*amin
     
+    if evitement:
+        a=amin
+   
     vprim=min(vmax,v+a*deltat)
-    
+    #print('vprim',vprim)
+   
     return(positionprim,orientationprim,vprim)
