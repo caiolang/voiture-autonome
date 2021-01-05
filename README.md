@@ -19,4 +19,4 @@ Toute la documentation de l'année dernière est dans les dossiers `lidar2019`, 
 ### **[EN]** 
 # Autonomous Vehicle PIE project
 
-Project with the aim of conceiving and building a small autonomous vehicle to take part in a copmetition.
+Project with the aim of conceiving and building a small autonomous vehicle to take part in a competition.
