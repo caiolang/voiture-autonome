@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib import animation
 
-P=500 #1 tour =?
+P=120 #1 tour =?
 [traj1,traj2]=trajectoirearc(P)
 
 x1=traj1[0]
@@ -75,7 +75,7 @@ anim = animation.FuncAnimation(fig, animate,
                                interval=100,
                                blit=True)
 
-#anim.save('tours.html', writer='ffmpeg', fps=10)
+# anim.save('tours.html', writer='ffmpeg', fps=10)
 plt.show()
 
 

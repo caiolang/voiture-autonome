@@ -9,7 +9,7 @@ def intersection(p,segment):
     y1=segment[1]
     x2=segment[2]
     y2=segment[3]
-    
+   
     Kp=yp/xp
     res=0
     if x2!=x1:
