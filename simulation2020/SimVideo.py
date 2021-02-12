@@ -7,10 +7,11 @@ from IPython.display import HTML
 
 from Simulation import *
 
-Steps = 120 #number of simulation steps
+Steps = 500 #number of simulation steps
 
 #making all the enviroment
-RaceTrack = MakeEnv()
+# RaceTrack = MakeEnv()
+RaceTrack = MakeEnv2()
 
 #Car1
 Car1Position = [10,-9]

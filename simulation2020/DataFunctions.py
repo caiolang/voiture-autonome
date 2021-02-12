@@ -21,7 +21,7 @@ def GetLidarSimulation(environment,position,orientation):
     This function simulates the operation of the LIDAR by returning a list with the polar coordinates of 
     the location of the obstacles
 
-    enviroment    -> List with all objects that are in the circuit as well as the edges of the circuit
+    environment    -> List with all objects that are in the circuit as well as the edges of the circuit
     position      -> Car position [x,y]
     orientation   -> Car orientation (0,360)
 

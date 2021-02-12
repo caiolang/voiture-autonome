@@ -19,7 +19,8 @@ class Parameters:
     Lidar_maxdistance = 1000     #Maximum distance that the handle can capture an object(meters)
 
     #Variables that will be used for simulation.
-    radius_margin = 0.05         #Safety margin for vehicle radius (meters)
+    # radius_margin = 0.05         #Safety margin for vehicle radius (meters)
+    radius_margin = 0.01         #Safety margin for vehicle radius (meters)
     Alpha=25                     #Angle range of measures that the algorithm will consider to calculate the trajectory
     Maxdist_relative=10          #Maximum distance I can place a point that moves at relative speed
     
@@ -27,9 +28,8 @@ class Parameters:
     Max_acceleration = 5
     Min_acceleration = -5
     
-    epsilonmax=45
-    tsb=0.1  
-
+    epsilonmax=45 #In degrees
+    tsb=0.1  #Taux de surbraquage -> epsilon/lateral acceleration
 
 
     #Variables created just to simulate the car in the virtual environment

@@ -7,11 +7,13 @@ def UpdateCar(R,Speed,position,target,orientation,direction,Rimpact,reverse):
     
     #If it's a reverse course
     if reverse:
-        epsilon=parameters.epsilonmax*pi/180
+        epsilon=parameters.epsilonmax*pi/180 # epsilon (rad), epsilonmax (degrees)
         
 
     #If the car turns to left
     if direction<0:
+    #If the car turns to right
+    # if direction>0:
         epsilon=-epsilon
     
     

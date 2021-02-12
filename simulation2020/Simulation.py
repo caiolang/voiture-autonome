@@ -13,13 +13,10 @@ def Simulation(Position,Speed,Orientation, Oldorientation,LidarDataOld, Environm
     Data_Safe = SafeZone(LidarData,parameters.Car_radius,parameters.radius_margin)
 
     if(len(LidarDataOld) == 0): AdvancedData= ImproveData(LidarData,LidarData,Data_Safe,Speed,Orientation,Oldorientation)
-    else: AdvancedData= ImproveData(LidarDataOld,LidarData,Data_Safe,Speed,Orientation,Oldorientation)#In reality, Car orientation must be replaced by the accelerometer data
-
-        
+    else: AdvancedData= ImproveData(LidarDataOld,LidarData,Data_Safe,Speed,Orientation,Oldorientation) #In reality, Car orientation must be replaced by the accelerometer data
     
     #Defining the optimal route
-    Target,Radius,direction,Reverse,Rimpact=FindTarget(AdvancedData,Speed)
-    
+    Target,Radius,direction,Reverse,Rimpact = FindTarget(AdvancedData,Speed)
 
     #Calculating the data to be sent to the car (speed and angle of the wheels) and simulating the movement
     [NewPosition,NewOrientation,NewSpeed,AngleWheels]= UpdateCar(Radius,Speed,Position,Target,Orientation,direction,Rimpact,Reverse)
@@ -33,6 +30,16 @@ def MakeEnv():
     circuitext=[[0,-3.5],[0.5,-1.5],[1.5,-0.5],[3.5,0],[8,0],[8.5,-0.5],[8.5,-3],[9,-3.5],[12,-3.5],[13,-3.5],[14,-4],[14.5,-5],[14.5,-8.5], [14,-9.5],[12.5,-10],[3,-10],[1.5,-9.5],[0.5,-8.5],[0,-6.5],[0,-3.5]]
     circuitint=[[2.5,-3.5],[3.5,-2.5],[6,-2.5],[6.5,-3],[6.5,-5.5],[7,-6],[11.5,-6],[12,-6.5],[12,-7],[11.5,-7.5], [3.5,-7.5],[2.5,-6.5],[2.5,-3.5]]
     obst1=[[4.5,-8.5],[6,-8.5],[6,-9],[4.5,-9],[4.5,-8.5]]
+
+    envir=[circuitext,circuitint,obst1]
+    return(envir)
+
+def MakeEnv2():
+    #Make the racetrack
+    circuitext=[[0,-3.5],[0.5,-1.5],[1.5,-0.5],[3.5,0],[8,0],[8.5,-0.5],[8.5,-3],[9,-3.5],[12,-3.5],[13,-3.5],[14,-4],[14.5,-5],[14.5,-8.5], [14,-9.5],[12.5,-10],[3,-10],[1.5,-9.5],[0.5,-8.5],[0,-6.5],[0,-3.5]]
+    circuitint=[[2.5,-3.5],[3.5,-2.5],[6,-2.5],[6.5,-3],[6.5,-5.5],[7,-6],[11.5,-6],[12,-6.5],[12,-7],[11.5,-7.5], [3.5,-7.5],[2.5,-6.5],[2.5,-3.5]]
+    obst1=[[4.5,-8.5],[6,-8.5],[6,-9],[4.5,-9],[4.5,-8.5]]
+    # obst1=[[5,-5],[16,-8.5],[12,-8],[5,-5]]
 
     envir=[circuitext,circuitint,obst1]
     return(envir)

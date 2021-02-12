@@ -9,7 +9,7 @@ def AchievableTarget(segments,target,Speed):
     
     """
     The function checks if the car can make the required curvature to reach the target, taking into account its speed
-    
+
     Return [id, radius, direction}
             id = 1 -> achievable               else id =0
             direction = 1 -> right             direction = -1 -> left
@@ -33,7 +33,7 @@ def AchievableTarget(segments,target,Speed):
     #Calculating which way the car will turn
     direction=1 #right
     if yp<0:
-        direction=-1 #lef
+        direction=-1 #left
     
     #If the radius of curvature is greater than the minimum possible then the objective is not reachable
     if Rmin>Rmax:
@@ -204,9 +204,7 @@ def ReverseTrajectory(speed,target,direction):
 
 
 def FindTarget (Advance_Data,Speed):
-    """
-    
-    
+    """    
         Advance_Data      :  [step_i, distance_i,x_i,y_i, Xsafe_i or Xvel_i, Ysafe_i or Yvel_i]
     """
     
@@ -221,7 +219,6 @@ def FindTarget (Advance_Data,Speed):
         liste=Advance_Data[i]+[d]
         Positions.append(liste)
         i+=1
-   
     
     
 
@@ -249,7 +246,7 @@ def FindTarget (Advance_Data,Speed):
         #Calculating which way the car will turn
         direction=1 #right
         if ypi<0:
-            direction=-1 #lef
+            direction=-1 #left
             
         #Checking if the target is not intersecting with any segment   
         j=0        
@@ -282,6 +279,7 @@ def FindTarget (Advance_Data,Speed):
             #If he succeeds then we have our ideal target
             if ind==1: 
                 R=10000
+                # reverse=False
                 Rimpact=Advance_Data[int(90/360*parameters.Lidar_steps)][2]
                 return([xpi,ypi],R,direction,reverse,Rimpact)
             
