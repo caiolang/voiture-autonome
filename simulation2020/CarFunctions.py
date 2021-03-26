@@ -12,8 +12,6 @@ def UpdateCar(R,Speed,position,target,orientation,direction,Rimpact,reverse):
 
     #If the car turns to left
     if direction<0:
-    #If the car turns to right
-    # if direction>0:
         epsilon=-epsilon
     
     

@@ -3,7 +3,7 @@ from DataFunctions import *
 from CarFunctions import *
 from Parameters import*
 
-def Simulation(Position,Speed,Orientation, Oldorientation,LidarDataOld, Environment):
+def Simulation(Position,Speed,Orientation, Oldorientation,LidarDataOld, Environment, Car):
 
 
     #Reading the LIDAR data
@@ -16,7 +16,7 @@ def Simulation(Position,Speed,Orientation, Oldorientation,LidarDataOld, Environm
     else: AdvancedData= ImproveData(LidarDataOld,LidarData,Data_Safe,Speed,Orientation,Oldorientation) #In reality, Car orientation must be replaced by the accelerometer data
     
     #Defining the optimal route
-    Target,Radius,direction,Reverse,Rimpact = FindTarget(AdvancedData,Speed)
+    Target,Radius,direction,Reverse,Rimpact = FindTarget(AdvancedData,Speed,Car)
 
     #Calculating the data to be sent to the car (speed and angle of the wheels) and simulating the movement
     [NewPosition,NewOrientation,NewSpeed,AngleWheels]= UpdateCar(Radius,Speed,Position,Target,Orientation,direction,Rimpact,Reverse)
@@ -35,11 +35,12 @@ def MakeEnv():
     return(envir)
 
 def MakeEnv2():
-    #Make the racetrack
+    
     circuitext=[[0,-3.5],[0.5,-1.5],[1.5,-0.5],[3.5,0],[8,0],[8.5,-0.5],[8.5,-3],[9,-3.5],[12,-3.5],[13,-3.5],[14,-4],[14.5,-5],[14.5,-8.5], [14,-9.5],[12.5,-10],[3,-10],[1.5,-9.5],[0.5,-8.5],[0,-6.5],[0,-3.5]]
     circuitint=[[2.5,-3.5],[3.5,-2.5],[6,-2.5],[6.5,-3],[6.5,-5.5],[7,-6],[11.5,-6],[12,-6.5],[12,-7],[11.5,-7.5], [3.5,-7.5],[2.5,-6.5],[2.5,-3.5]]
-    obst1=[[4.5,-8.5],[6,-8.5],[6,-9],[4.5,-9],[4.5,-8.5]]
-    # obst1=[[5,-5],[16,-8.5],[12,-8],[5,-5]]
+    obst1=[[3.5,-8.5],[4,-8.5],[4,-9],[3.5,-9],[3.5,-8.5]]
+    obst2=[[11,-8.5],[11.5,-8.5],[11.5,-9],[11,-9],[11,-8.5]]
+    obst3=[[7.5,-4],[8,-4],[8,-4.5],[7.5,-4.5],[7.5,-4]]
 
     envir=[circuitext,circuitint,obst1]
     return(envir)

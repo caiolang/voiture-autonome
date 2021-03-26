@@ -13,14 +13,14 @@ Steps = 500 #number of simulation steps
 # RaceTrack = MakeEnv()
 RaceTrack = MakeEnv2()
 
-#Car1
+#Car1 (BLACK)
 Car1Position = [10,-9]
 Car1Speed = 0
 Car1Orientation = 180 # degrees
 Car1Orientationold = 0
 Lidar1 = []
 
-#Car2
+#Car2 (RED)
 Car2Position = [10,-8]
 Car2Speed =0
 Car2Orientation = 180 # degrees
@@ -41,8 +41,8 @@ while j < Steps:
     
     temp1 = Car1Orientation;
     temp2 = Car2Orientation;
-    [Car1Position,Car1Orientation,Lidar1,Car1Speed] = Simulation(Car1Position,Car1Speed,Car1Orientation,Car1Orientationold,Lidar1, RaceTrack + [CarRectangle(Car2Position,Car2Orientation)])
-    [Car2Position,Car2Orientation,Lidar2,Car2Speed] = Simulation(Car2Position,Car2Speed,Car2Orientation,Car2Orientationold,Lidar2, RaceTrack + [CarRectangle(Car1Position,Car1Orientation)])
+    [Car1Position,Car1Orientation,Lidar1,Car1Speed] = Simulation(Car1Position,Car1Speed,Car1Orientation,Car1Orientationold,Lidar1, RaceTrack + [CarRectangle(Car2Position,Car2Orientation)],"Car 1 ")
+    [Car2Position,Car2Orientation,Lidar2,Car2Speed] = Simulation(Car2Position,Car2Speed,Car2Orientation,Car2Orientationold,Lidar2, RaceTrack + [CarRectangle(Car1Position,Car1Orientation)],"Car 2 ")
     Car1Orientationold = temp1
     Car2Orientationold = temp2
     
@@ -78,8 +78,10 @@ while i<n:
     
     
 ax = fig.add_subplot(111)
-ax.set_xlim(-1,16)
-ax.set_ylim(-11,1)
+# ax.set_xlim(-1,16)
+# ax.set_ylim(-11,1)
+plt.xlim([-5, 20])
+plt.ylim([-10, 2])
 
 patch1 = patches.Rectangle((0, 0), 0, 0, fc='k')
 patch2 = patches.Rectangle((0, 0), 0, 0, fc='r')
@@ -111,4 +113,6 @@ anim = animation.FuncAnimation(fig, animate,
 
 
 # HTML(anim.to_html5_video()) # Used to make HTML video on a python notebook
+# plt.xlim([-5, 20])
+# plt.ylim([-10, 2])
 plt.show()

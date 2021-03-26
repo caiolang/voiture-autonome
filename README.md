@@ -14,6 +14,8 @@ Toute la documentation de l'année dernière est dans les dossiers `lidar2019`, 
 
 ### 3. Wiki
 
+hostname -I
+
 ------------
 
 ### **[EN]** 

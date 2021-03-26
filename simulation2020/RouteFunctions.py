@@ -83,7 +83,7 @@ def AchievableTarget(segments,target,Speed):
 
 
 
-def AchievableTargetAvoid(segments,target,Speed,direction): 
+def AchievableTargetAvoid(segments,target,Speed,direction, Car): 
 
     Rminamaxlat=Speed**2/parameters.Max_accelerationlateral
     Rminepsilonmax=parameters.tsb*Speed**2/(parameters.epsilonmax*pi/180)+parameters.Car_length/(parameters.epsilonmax*pi/180)
@@ -113,7 +113,7 @@ def AchievableTargetAvoid(segments,target,Speed,direction):
         i+=1
             
              
-    print('evitement ok')
+    print(Car + 'evitement ok')
     return(1,10000,direction) #la valeur du rayon (1000) est juste la pour respecter la forme de sortie imposée par la fct trouvecible 
 
 
@@ -203,7 +203,7 @@ def ReverseTrajectory(speed,target,direction):
 
 
 
-def FindTarget (Advance_Data,Speed):
+def FindTarget (Advance_Data,Speed,Car):
     """    
         Advance_Data      :  [step_i, distance_i,x_i,y_i, Xsafe_i or Xvel_i, Ysafe_i or Yvel_i]
     """
@@ -274,19 +274,18 @@ def FindTarget (Advance_Data,Speed):
             #If the target is not reachable by the car we check if the external trajectory braking and steering fully allows you to join the traj on the right without hitting a wall
           
             reverse=True
-            ind,R,direction =AchievableTargetAvoid(segments,[xpi,ypi],Speed, direction)
+            ind,R,direction =AchievableTargetAvoid(segments,[xpi,ypi],Speed, direction, Car)
             
             #If he succeeds then we have our ideal target
             if ind==1: 
                 R=10000
-                # reverse=False
                 Rimpact=Advance_Data[int(90/360*parameters.Lidar_steps)][2]
                 return([xpi,ypi],R,direction,reverse,Rimpact)
             
         i+=1
     
     #The code failed to calculate an ideal target
-    print('ERREUR pas de cible optimale')
+    print(Car + 'ERREUR pas de cible optimale')
     direction=1
     if Positions[0][5]<0:
         direction=-1
