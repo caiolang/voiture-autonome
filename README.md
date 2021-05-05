@@ -17,7 +17,7 @@ La première approche permet une prise en main de la voiture et a abouti à des 
 
 - Le dossier `DOCS` contient toutes les compte rendues, outils Gestion de Projet/Ingénierie Systèmes, rapports et documentation des composants realisés par l'équipe 2 du PIE Voiture Autonome pendant l'année de 2020/2021.
 
-- Toute la documentation et codes de 2019 sont dans `DOCS/6-References/documentation_equipe_2019`dossiers `lidar2019`.
+- Toute la documentation et codes de 2019 sont dans `DOCS/6-References/documentation_equipe_2019`.
 
 ------------
 

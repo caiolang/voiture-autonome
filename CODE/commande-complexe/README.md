@@ -1,6 +1,7 @@
-# Voiture Autonome
+# Commande Complexe - *Voiture Autonome*
 
-DISCLAIMER : Il est très difficile de "rentrer" dans ce code adapté de celui de l'année 2019-2020. Ce guide ne vous évitera
+
+**DISCLAIMER :** Il est très difficile de "rentrer" dans ce code adapté de celui de l'année 2019-2020. Ce guide ne vous évitera
 pas de longues heures de prise en main, mais peut-être moins que nous (on espère).
 
 ## Instructions d'utilisation
