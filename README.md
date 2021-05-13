@@ -9,7 +9,7 @@ Projet de PIE qui vise à concevoir et construire une voiture autonome en modèl
 Il y a deux approches différents du code:
 
 1. `commande-simple`, avec une loi de commande plus simple et le code nécessaire pour faire tourner la voiture. Cette approche était testé dans la voiture à l'occasion de la course à l'ENS en 2021.
-2. `commande-complexe`, avec un environnement de simulation et une loi de commande plus complexe, structuré en programmation orienté objet. Cette loi de commande a été développé seulement avec le support de la simulation, et était jamais implementé dans la voiture.
+2. `commande-complexe`, avec un environnement de simulation et une loi de commande plus complexe, structuré en programmation orienté objet. Cette loi de commande a été développée seulement à partir de la simulation, et n'a jamais été implementée dans la voiture. Attention : la simulation a évolué sans que la tentative de loi de commande ne soit mise à jour en parallèle. 
 
 La première approche permet une prise en main de la voiture et a abouti à des bonnes performances. Une direction pour l'avancemment du projet serait d'améliorer et integrer la deuxième approche avec la voiture.
 
